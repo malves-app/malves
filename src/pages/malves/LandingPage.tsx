@@ -1,14 +1,30 @@
-import ContactSection from "@/components/malves/ContactSection";
-import FooterSection from "@/components/malves/FooterSection";
-import Header from "@/components/malves/Header";
-import HeroSection from "@/components/malves/HeroSection";
-import AboutSection from "@/components/malves/AboutSection";
-import ShowcaseSection from "@/components/malves/ShowcaseSection";
+import ContactSection from "../../components/malves/ContactSection";
+import FooterSection from "../../components/malves/FooterSection";
+import Header from "../../components/malves/Header";
+import HeroSection from "../../components/malves/HeroSection";
+import AboutSection from "../../components/malves/AboutSection";
+import ShowcaseSection from "../../components/malves/ShowcaseSection";
 import React, { useEffect } from "react";
 const LandingPage: React.FC = () => {
   useEffect(() => {
-    // Garante que a página sempre carregue no topo
-    window.scrollTo(0, 0);
+    const hash = window.location.hash;
+    if (hash) {
+      const sectionId = hash.substring(1);
+
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const headerHeight = -20;
+          const elementPosition = element.offsetTop - headerHeight - 20;
+          window.scrollTo({
+            top: elementPosition,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white relative overflow-hidden">

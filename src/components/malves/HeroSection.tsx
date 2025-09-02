@@ -4,7 +4,7 @@ const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 0; // Altura aproximada do header fixo
+      const headerHeight = 120; // Altura correta do header fixo
       const elementPosition = element.offsetTop - headerHeight - 20; // 20px de margem extra
       window.scrollTo({
         top: elementPosition,

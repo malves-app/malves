@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import LandingPage from "./pages/malves/LandingPage";
 import NomeIAPage from "./pages/nomeia/NomeIAPage";
 import PrivacyPolicyPage from "./pages/malves/PrivacyPolicyPage";
+import NomeIAPrivacyPage from "./pages/nomeia/NomeIAPrivacyPage";
 
 
 function App() {
@@ -10,8 +11,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
         <Route path="/nomeia" element={<NomeIAPage />} />
-        <Route path="/privacy" element={<PrivacyPolicyPage />} />
+        <Route path="/nomeia/politica-de-privacidade" element={<NomeIAPrivacyPage />} />
       </Routes>
       <Toaster
         position="top-right"

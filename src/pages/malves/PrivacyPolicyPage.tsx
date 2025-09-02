@@ -1,7 +1,7 @@
+import FooterSection from "../../components/malves/FooterSection";
+import { ArrowLeft, Code, Database, Eye, Lock, Shield } from "lucide-react";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Code, ArrowLeft, Shield, Eye, Database, Lock } from "lucide-react";
-import FooterSection from "@/components/malves/FooterSection";
 
 const PrivacyPolicyPage: React.FC = () => {
   useEffect(() => {
@@ -300,7 +300,12 @@ const PrivacyPolicyPage: React.FC = () => {
 
                 <div className="space-y-4">
                   <a
-                    href=""
+                    href="/#contato"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      // Navega para a página principal
+                      window.location.href = "/#contato";
+                    }}
                     className="inline-block bg-gradient-to-r from-purple-600 to-blue-500 px-8 py-4 rounded-2xl hover:from-purple-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-semibold"
                   >
                     Entrar em contato

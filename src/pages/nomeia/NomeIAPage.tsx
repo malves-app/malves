@@ -11,7 +11,6 @@ import {
   Heart,
   Linkedin,
   Menu,
-  Play,
   Shield,
   Smartphone,
   Sparkles,
@@ -19,11 +18,12 @@ import {
   TrendingUp,
   Users,
   X,
-  Zap
+  Zap,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import googlePlayIcon from "../../assets/googleplay.png";
+import nomeiaLogo from "../../assets/nomeia.png";
 
 const NomeIAPage: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,20 +37,48 @@ const NomeIAPage: React.FC = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
+    // Função para detectar mudanças no hash da URL
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1); // Remove o #
+      if (hash) {
+        const element = document.getElementById(hash);
+        if (element) {
+          const headerHeight = 0;
+          const elementPosition = element.offsetTop - headerHeight - 20;
+          window.scrollTo({
+            top: elementPosition,
+            behavior: "smooth",
+          });
+        }
+      }
+    };
+
+    // Verifica se há hash na URL ao carregar a página
+    if (window.location.hash) {
+      // Pequeno delay para garantir que o DOM esteja carregado
+      setTimeout(handleHashChange, 100);
+    }
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 0; // Altura aproximada do header fixo
-      const elementPosition = element.offsetTop - headerHeight - 20; // 20px de margem extra
+      const headerHeight = 0;
+      const elementPosition = element.offsetTop - headerHeight - 20;
       window.scrollTo({
         top: elementPosition,
         behavior: "smooth",
       });
-      // Atualiza a URL com o hash
+
+      // Atualiza a URL com o hash da seção
       window.history.pushState(null, "", `#${sectionId}`);
     }
     setIsMobileMenuOpen(false);
@@ -94,10 +122,17 @@ const NomeIAPage: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection("sobre")}
+              onClick={() => scrollToSection("inicio")}
               className="text-gray-300 hover:text-white transition-colors duration-200 font-medium relative group"
             >
-              Sobre
+              Início
+              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 group-hover:w-full transition-all duration-300"></div>
+            </button>
+            <button
+              onClick={() => scrollToSection("recursos")}
+              className="text-gray-300 hover:text-white transition-colors duration-200 font-medium relative group"
+            >
+              Recursos
               <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 group-hover:w-full transition-all duration-300"></div>
             </button>
             <button
@@ -114,12 +149,19 @@ const NomeIAPage: React.FC = () => {
               Como Funciona
               <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 group-hover:w-full transition-all duration-300"></div>
             </button>
-            <Link
-              to="/nomeia/app"
-              className="bg-gradient-to-r from-purple-600 to-blue-500 px-6 py-3 rounded-full hover:from-purple-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-semibold"
+            <button
+              onClick={() => scrollToSection("politica-de-privacidade")}
+              className="text-gray-300 hover:text-white transition-colors duration-200 font-medium relative group"
             >
-              Testar Agora
-            </Link>
+              Política de Privacidade
+              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 group-hover:w-full transition-all duration-300"></div>
+            </button>
+            <button
+              onClick={() => scrollToSection("baixar-agora")}
+              className="block bg-gradient-to-r from-purple-600 to-blue-500 px-6 py-3 rounded-xl hover:from-purple-700 hover:to-blue-600 transition-all duration-300 font-semibold text-center"
+            >
+              Baixar Agora
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -133,13 +175,19 @@ const NomeIAPage: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 backdrop-blur-2xl border-b border-white/10 shadow-2xl">
             <div className="px-4 py-6 space-y-4">
               <button
-                onClick={() => scrollToSection("sobre")}
+                onClick={() => scrollToSection("inicio")}
                 className="block w-full text-left text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-4 hover:bg-white/10 rounded-xl"
               >
-                Sobre
+                Início
+              </button>
+              <button
+                onClick={() => scrollToSection("recursos")}
+                className="block w-full text-left text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-4 hover:bg-white/10 rounded-xl"
+              >
+                Recursos
               </button>
               <button
                 onClick={() => scrollToSection("categorias")}
@@ -148,28 +196,37 @@ const NomeIAPage: React.FC = () => {
                 Categorias
               </button>
               <button
+                onClick={() => scrollToSection("politica-de-privacidade")}
+                className="block w-full text-left text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-4 hover:bg-white/10 rounded-xl"
+              >
+                Política de Privacidade
+              </button>
+              <button
                 onClick={() => scrollToSection("como-funciona")}
                 className="block w-full text-left text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-4 hover:bg-white/10 rounded-xl"
               >
                 Como Funciona
               </button>
-              <Link
-                to="/nomeia/app"
+              <button
+                onClick={() => scrollToSection("baixar-agora")}
                 className="block bg-gradient-to-r from-purple-600 to-blue-500 px-6 py-3 rounded-xl hover:from-purple-700 hover:to-blue-600 transition-all duration-300 font-semibold text-center"
               >
                 Testar Agora
-              </Link>
+              </button>
             </div>
           </div>
         )}
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 pb-16">
+      <section
+        id="inicio"
+        className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 pb-16"
+      >
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
-            <div className="p-8 sm:p-12 bg-gradient-to-r from-purple-600 to-blue-500 rounded-3xl sm:rounded-4xl inline-block shadow-2xl animate-float">
-              <Brain size={64} className="text-white sm:w-20 sm:h-20" />
+            <div className="p-8 sm:p-4 bg-gradient-to-r from-purple-600 to-blue-500 rounded-3xl sm:rounded-4xl inline-block shadow-2xl animate-float">
+              <img className="h-24" src={nomeiaLogo} alt="NomeIA" />
             </div>
           </div>
 
@@ -205,7 +262,7 @@ const NomeIAPage: React.FC = () => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
             <div className="bg-white/10 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-purple-400 mb-2">
                 1000+
@@ -230,18 +287,18 @@ const NomeIAPage: React.FC = () => {
                 Categorias
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+            {/* <div className="bg-white/10 backdrop-blur-xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-yellow-400 mb-2">
                 4.9
               </div>
               <div className="text-gray-300 text-sm sm:text-base">
                 Avaliação
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
             <ChevronDown size={32} className="text-white/60" />
           </div>
         </div>
@@ -535,7 +592,10 @@ const NomeIAPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative z-10 py-24 sm:py-32 px-4 sm:px-6">
+      <section
+        id="baixar-agora"
+        className="relative z-10 py-24 sm:py-32 px-4 sm:px-6"
+      >
         <div className="max-w-5xl mx-auto text-center">
           <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-2xl p-12 sm:p-16 rounded-3xl sm:rounded-4xl border border-white/20 shadow-2xl">
             <div className="mb-8 sm:mb-12">
@@ -556,39 +616,108 @@ const NomeIAPage: React.FC = () => {
             </h2>
 
             <p className="text-xl sm:text-2xl text-gray-300 mb-12 sm:mb-16 leading-relaxed px-4">
-              Experimente agora o NomeIA e descubra nomes únicos para seus
-              projetos
+              Baixe agora o NomeIA e descubra nomes únicos para seus projetos
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
-              <Link
-                to="/nomeia/app"
-                className="group bg-gradient-to-r from-purple-600 to-blue-500 px-12 sm:px-16 py-6 sm:py-8 rounded-2xl hover:from-purple-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-2xl font-bold text-xl sm:text-2xl flex items-center space-x-4 w-full sm:w-auto justify-center"
+              <button
+                onClick={() => {
+                  window.open(
+                    "https://play.google.com/store/apps/details?id=br.app.malves.nomeia",
+                    "_blank"
+                  );
+                }}
               >
-                <Play size={28} />
-                <span>Testar Agora</span>
-                <ArrowRight
-                  size={28}
-                  className="group-hover:translate-x-1 transition-transform duration-200"
-                />
-              </Link>
-
-              <Link
-                to="/"
-                className="px-12 sm:px-16 py-6 sm:py-8 border-2 border-white/20 rounded-2xl hover:bg-white/10 transition-all duration-300 font-bold text-xl sm:text-2xl backdrop-blur-sm w-full sm:w-auto text-center"
-              >
-                Voltar para Malves
-              </Link>
+                <img src={googlePlayIcon} alt="Google Play" />
+              </button>
             </div>
           </div>
         </div>
       </section>
 
+      <section
+        id="politica-de-privacidade"
+        className="relative z-10 min-h-screen flex items-center justify-center px-6"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-r from-green-600/20 to-teal-600/20 backdrop-blur-xl p-12 rounded-3xl border border-white/20">
+            <div className="mb-8">
+              <div className="p-6 bg-gradient-to-r from-green-600 to-teal-500 rounded-3xl inline-block shadow-2xl">
+                <Shield size={48} className="text-white" />
+              </div>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Sua{" "}
+              <span className="bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
+                Privacidade
+              </span>{" "}
+              é Prioridade
+            </h2>
+
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              O NomeIA foi desenvolvido com foco total na proteção dos seus
+              dados. Seus nomes favoritos são salvos apenas no seu dispositivo.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-10">
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                <h3 className="text-lg font-bold text-green-300 mb-3">
+                  🔒 Dados Locais
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Seus favoritos ficam apenas no seu dispositivo
+                </p>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                <h3 className="text-lg font-bold text-blue-300 mb-3">
+                  🛡️ Sem Cadastro
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Use sem fornecer dados pessoais
+                </p>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                <h3 className="text-lg font-bold text-purple-300 mb-3">
+                  🔐 Criptografia
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Comunicação sempre segura e criptografada
+                </p>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                <h3 className="text-lg font-bold text-pink-300 mb-3">
+                  📋 Transparência
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  Política clara e acessível
+                </p>
+              </div>
+            </div>
+
+            <Link
+              to="/nomeia/politica-de-privacidade"
+              className="bg-gradient-to-r from-green-600 to-teal-500 px-8 py-4 rounded-2xl hover:from-green-700 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-semibold inline-flex items-center space-x-2"
+            >
+              <Shield size={20} />
+              <span>Ler Política Completa</span>
+              <ArrowRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Modern Footer */}
-      <footer className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 border-t border-white/10">
+      <footer
+        id="footer"
+        className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 border-t border-white/10"
+      >
         <div className="max-w-7xl mx-auto">
           {/* Newsletter Section */}
-          <div className="bg-gradient-to-r from-purple-600/10 to-blue-600/10 backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-white/20 mb-12 sm:mb-16 text-center">
+          {/* <div className="bg-gradient-to-r from-purple-600/10 to-blue-600/10 backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-white/20 mb-12 sm:mb-16 text-center">
             <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
               Fique por dentro das novidades
             </h3>
@@ -605,7 +734,7 @@ const NomeIAPage: React.FC = () => {
                 Inscrever
               </button>
             </div>
-          </div>
+          </div> */}
 
           {/* Main Footer Content */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
@@ -632,7 +761,7 @@ const NomeIAPage: React.FC = () => {
               {/* Social Links */}
               <div className="flex items-center space-x-4">
                 <a
-                  href="#"
+                  href="https://github.com/malves-app"
                   className="p-4 bg-white/10 hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-600 rounded-2xl transition-all duration-300 transform hover:scale-110 group"
                 >
                   <Github
@@ -641,7 +770,7 @@ const NomeIAPage: React.FC = () => {
                   />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/moabebarbosaa/"
                   className="p-4 bg-white/10 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-500 rounded-2xl transition-all duration-300 transform hover:scale-110 group"
                 >
                   <Linkedin
@@ -656,12 +785,12 @@ const NomeIAPage: React.FC = () => {
             <div>
               <h4 className="text-xl font-bold mb-6 text-white">Navegação</h4>
               <div className="space-y-4">
-                <Link
-                  to="/"
-                  className="block text-gray-400 hover:text-white transition-colors duration-200 hover:translate-x-1 transform"
+                <button
+                  onClick={() => scrollToSection("inicio")}
+                  className="block text-gray-400 hover:text-white transition-colors duration-200 text-left hover:translate-x-1 transform"
                 >
                   Início
-                </Link>
+                </button>
                 <button
                   onClick={() => scrollToSection("recursos")}
                   className="block text-gray-400 hover:text-white transition-colors duration-200 text-left hover:translate-x-1 transform"
@@ -681,7 +810,7 @@ const NomeIAPage: React.FC = () => {
                   Como Funciona
                 </button>
                 <Link
-                  to="/privacy"
+                  to="/nomeia/politica-de-privacidade"
                   className="block text-gray-400 hover:text-white transition-colors duration-200 hover:translate-x-1 transform"
                 >
                   Privacidade
@@ -706,7 +835,7 @@ const NomeIAPage: React.FC = () => {
                     className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                   />
                 </Link>
-               
+
                 <div className="flex items-center space-x-3 text-gray-500">
                   <div className="p-2 bg-gray-600 rounded-lg">
                     <Users size={16} className="text-gray-400" />
@@ -722,31 +851,23 @@ const NomeIAPage: React.FC = () => {
             <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
               <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8">
                 <p className="text-gray-400 text-center sm:text-left">
-                  &copy; 2024 Malves. Feito com ❤️ no Brasil.
+                  &copy; {new Date().getFullYear()} Malves. Todos os direitos reservados.
                 </p>
 
                 <div className="flex items-center space-x-6 text-sm">
                   <Link
-                    to="/privacy"
+                    to="/politica-de-privacidade"
                     className="text-gray-400 hover:text-white transition-colors duration-200 hover:underline"
                   >
                     Política de Privacidade
                   </Link>
                   <a
-                    href="mailto:contato@malves.com"
+                    href="mailto:malvesappbr@gmail.com"
                     className="text-gray-400 hover:text-white transition-colors duration-200 hover:underline"
                   >
                     Contato
                   </a>
                 </div>
-              </div>
-
-              {/* Status Badge */}
-              <div className="flex items-center space-x-3 bg-green-500/20 px-6 py-3 rounded-full border border-green-400/30">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-green-300 font-semibold">
-                  App funcionando perfeitamente
-                </span>
               </div>
             </div>
           </div>

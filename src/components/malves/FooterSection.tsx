@@ -3,9 +3,7 @@ import {
   Code,
   ExternalLink,
   Github,
-  Instagram,
   Linkedin,
-  Mail,
   Users,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -23,7 +21,7 @@ const FooterSection = () => {
 
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 0; // Altura aproximada do header fixo
+      const headerHeight = 120; // Altura correta do header fixo
       const elementPosition = element.offsetTop - headerHeight - 20; // 20px de margem extra
       window.scrollTo({
         top: elementPosition,
@@ -122,7 +120,7 @@ const FooterSection = () => {
                 </Link>
               )}
               <Link
-                to="/privacy"
+                to="/politica-de-privacidade"
                 className="block text-gray-400 hover:text-white transition-colors duration-200"
               >
                 Política de Privacidade e Uso do Site

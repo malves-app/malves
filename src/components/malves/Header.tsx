@@ -107,7 +107,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && isHomePage && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 backdrop-blur-2xl border-b border-white/10 shadow-2xl">
           <div className="px-4 py-6 space-y-4">
             <button
               onClick={() => scrollToSection("inicio")}
