@@ -1,17 +1,19 @@
+"use client";
+
 import {
-    AlertCircle,
-    ArrowLeft,
-    Brain,
-    Database,
-    Eye,
-    FileText,
-    Globe,
-    Lock,
-    Shield,
-    Users
+  AlertCircle,
+  ArrowLeft,
+  Brain,
+  Database,
+  Eye,
+  FileText,
+  Globe,
+  Lock,
+  Shield,
+  Users,
 } from "lucide-react";
+import Link from "next/link";
 import React from "react";
-import { Link } from "react-router-dom";
 
 const NomeIAPrivacyPage: React.FC = () => {
   return (
@@ -20,7 +22,7 @@ const NomeIAPrivacyPage: React.FC = () => {
         {/* Header */}
         <header className="px-6 py-8 border-b border-white/10">
           <nav className="max-w-4xl mx-auto flex items-center justify-between">
-            <Link to="/nomeia" className="flex items-center space-x-3 group">
+            <Link href="/nomeia" className="flex items-center space-x-3 group">
               <div className="p-2 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <Brain size={24} className="text-white" />
               </div>
@@ -30,7 +32,7 @@ const NomeIAPrivacyPage: React.FC = () => {
             </Link>
 
             <Link
-              to="/nomeia"
+              href="/nomeia"
               className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 font-medium"
             >
               <ArrowLeft size={20} />
@@ -155,10 +157,10 @@ const NomeIAPrivacyPage: React.FC = () => {
 
                 <div className="space-y-4 text-gray-300 leading-relaxed">
                   <p>
-                    O NomeIA usa "Cookies" para identificar as áreas do nosso
-                    site que você visitou. Um Cookie é um pequeno pedaço de
-                    dados armazenado em seu computador ou dispositivo móvel pelo
-                    seu navegador web.
+                    O NomeIA usa &ldquo;Cookies&rdquo; para identificar as áreas
+                    do nosso site que você visitou. Um Cookie é um pequeno
+                    pedaço de dados armazenado em seu computador ou dispositivo
+                    móvel pelo seu navegador web.
                   </p>
                   <p>
                     Usamos Cookies para melhorar o desempenho e funcionalidade
@@ -453,7 +455,7 @@ const NomeIAPrivacyPage: React.FC = () => {
         <footer className="px-6 py-12 border-t border-white/10">
           <div className="max-w-4xl mx-auto text-center">
             <Link
-              to="/nomeia"
+              href="/nomeia"
               className="inline-flex items-center space-x-3 mb-6 group"
             >
               <div className="p-2 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl group-hover:shadow-xl transition-all duration-300">
@@ -468,13 +470,13 @@ const NomeIAPrivacyPage: React.FC = () => {
 
             <div className="flex items-center justify-center space-x-6 text-sm">
               <Link
-                to="/nomeia"
+                href="/nomeia"
                 className="text-gray-400 hover:text-white transition-colors duration-200 hover:underline"
               >
                 Voltar ao NomeIA
               </Link>
               <Link
-                to="/"
+                href="/"
                 className="text-gray-400 hover:text-white transition-colors duration-200 hover:underline"
               >
                 Malves

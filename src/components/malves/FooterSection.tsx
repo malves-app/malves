@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Brain,
   Code,
@@ -6,11 +8,12 @@ import {
   Linkedin,
   Users,
 } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const FooterSection = () => {
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   const scrollToSection = (sectionId: string) => {
     // Se não estiver na página inicial, navega para lá primeiro
@@ -40,7 +43,7 @@ const FooterSection = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link
-              to="/"
+              href={"/#"}
               className="inline-flex items-center space-x-3 mb-6 group"
             >
               <div className="p-3 bg-gradient-to-r from-purple-600 to-blue-500 rounded-2xl group-hover:shadow-xl transition-all duration-300">
@@ -113,14 +116,14 @@ const FooterSection = () => {
                 </>
               ) : (
                 <Link
-                  to="/"
+                  href="/"
                   className="block text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Voltar ao Início
                 </Link>
               )}
               <Link
-                to="/politica-de-privacidade"
+                href="/politica-de-privacidade"
                 className="block text-gray-400 hover:text-white transition-colors duration-200"
               >
                 Política de Privacidade e Uso do Site
@@ -133,7 +136,7 @@ const FooterSection = () => {
             <h4 className="text-xl font-bold mb-6 text-white">Aplicativos</h4>
             <div className="space-y-4">
               <Link
-                to="/nomeia"
+                href="/nomeia"
                 className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200 group"
               >
                 <div className="p-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg">

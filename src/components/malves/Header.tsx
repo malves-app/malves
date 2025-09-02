@@ -1,12 +1,15 @@
+"use client";
+
 import { Code, Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +28,7 @@ const Header = () => {
 
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 0; 
+      const headerHeight = 0;
       const elementPosition = element.offsetTop - headerHeight - 20;
       window.scrollTo({
         top: elementPosition,
@@ -45,7 +48,7 @@ const Header = () => {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-3 group">
+        <Link href="/" className="flex items-center space-x-3 group">
           <div
             className={`p-2 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 ${
               isScrolled ? "scale-90" : ""

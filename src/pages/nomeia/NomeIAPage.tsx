@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   Award,
@@ -21,9 +23,10 @@ import {
   Zap,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import googlePlayIcon from "../../assets/googleplay.png";
 import nomeiaLogo from "../../assets/nomeia.png";
+import Link from "next/link";
+import Image from "next/image";
 
 const NomeIAPage: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -102,7 +105,7 @@ const NomeIAPage: React.FC = () => {
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-3 group">
             <div
               className={`p-2 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 ${
                 isScrolled ? "scale-90" : ""
@@ -226,7 +229,13 @@ const NomeIAPage: React.FC = () => {
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <div className="p-8 sm:p-4 bg-gradient-to-r from-purple-600 to-blue-500 rounded-3xl sm:rounded-4xl inline-block shadow-2xl animate-float">
-              <img className="h-24" src={nomeiaLogo} alt="NomeIA" />
+              <Image
+                className="h-24"
+                src={nomeiaLogo}
+                alt="NomeIA"
+                width={96}
+                height={96}
+              />
             </div>
           </div>
 
@@ -250,7 +259,12 @@ const NomeIAPage: React.FC = () => {
                 );
               }}
             >
-              <img src={googlePlayIcon} alt="Google Play" />
+              <Image
+                src={googlePlayIcon}
+                alt="Google Play"
+                width={135}
+                height={40}
+              />
             </button>
 
             <button
@@ -628,7 +642,12 @@ const NomeIAPage: React.FC = () => {
                   );
                 }}
               >
-                <img src={googlePlayIcon} alt="Google Play" />
+                <Image
+                  src={googlePlayIcon}
+                  alt="Google Play"
+                  width={135}
+                  height={40}
+                />
               </button>
             </div>
           </div>
@@ -699,7 +718,7 @@ const NomeIAPage: React.FC = () => {
             </div>
 
             <Link
-              to="/nomeia/politica-de-privacidade"
+              href="/nomeia/politica-de-privacidade"
               className="bg-gradient-to-r from-green-600 to-teal-500 px-8 py-4 rounded-2xl hover:from-green-700 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-semibold inline-flex items-center space-x-2"
             >
               <Shield size={20} />
@@ -741,7 +760,7 @@ const NomeIAPage: React.FC = () => {
             {/* Brand Column */}
             <div className="lg:col-span-2">
               <Link
-                to="/"
+                href="/"
                 className="inline-flex items-center space-x-4 mb-8 group"
               >
                 <div className="p-3 bg-gradient-to-r from-purple-600 to-blue-500 rounded-2xl group-hover:shadow-xl transition-all duration-300">
@@ -810,7 +829,7 @@ const NomeIAPage: React.FC = () => {
                   Como Funciona
                 </button>
                 <Link
-                  to="/nomeia/politica-de-privacidade"
+                  href="/nomeia/politica-de-privacidade"
                   className="block text-gray-400 hover:text-white transition-colors duration-200 hover:translate-x-1 transform"
                 >
                   Privacidade
@@ -823,7 +842,7 @@ const NomeIAPage: React.FC = () => {
               <h4 className="text-xl font-bold mb-6 text-white">Aplicativos</h4>
               <div className="space-y-4">
                 <Link
-                  to="/nomeia"
+                  href="/nomeia"
                   className="flex items-center space-x-3 text-gray-400 hover:text-white transition-all duration-200 group hover:translate-x-1 transform"
                 >
                   <div className="p-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg group-hover:shadow-lg transition-all duration-200">
@@ -851,12 +870,13 @@ const NomeIAPage: React.FC = () => {
             <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
               <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8">
                 <p className="text-gray-400 text-center sm:text-left">
-                  &copy; {new Date().getFullYear()} Malves. Todos os direitos reservados.
+                  &copy; {new Date().getFullYear()} Malves. Todos os direitos
+                  reservados.
                 </p>
 
                 <div className="flex items-center space-x-6 text-sm">
                   <Link
-                    to="/politica-de-privacidade"
+                    href="/politica-de-privacidade"
                     className="text-gray-400 hover:text-white transition-colors duration-200 hover:underline"
                   >
                     Política de Privacidade

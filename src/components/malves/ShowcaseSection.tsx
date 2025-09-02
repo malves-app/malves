@@ -1,7 +1,11 @@
+"use client";
+
 import { ArrowRight, Code, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+
 import googlePlayIcon from "../../assets/googleplay.png";
 import nomeiaIcon from "../../assets/nomeia.png";
+import Link from "next/link";
+import Image from "next/image";
 
 const ShowcaseSection = () => {
   return (
@@ -59,7 +63,7 @@ const ShowcaseSection = () => {
 
                 <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                   <Link
-                    to="/nomeia"
+                    href="/nomeia"
                     className="w-80 bg-gradient-to-r from-purple-600 to-blue-500 px-8 py-4 rounded-2xl hover:from-purple-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-xl font-bold text-lg flex items-center justify-center space-x-3"
                   >
                     <span>Ver Detalhes</span>
@@ -77,7 +81,12 @@ const ShowcaseSection = () => {
                       );
                     }}
                   >
-                    <img src={googlePlayIcon} alt="Google Play" />
+                    <Image
+                      src={googlePlayIcon}
+                      alt="Google Play"
+                      width={135}
+                      height={40}
+                    />
                   </button>
                 </div>
               </div>
@@ -85,7 +94,13 @@ const ShowcaseSection = () => {
               <div className="order-1 lg:order-2 flex justify-center">
                 <div className="relative">
                   <div className="p-8 sm:p-10 bg-gradient-to-r rounded-3xl shadow-2xl animate-float">
-                    <img src={nomeiaIcon} alt="NomeIA" className="size-48" />
+                    <Image
+                      src={nomeiaIcon}
+                      alt="NomeIA"
+                      width={192}
+                      height={192}
+                      className="size-48"
+                    />
                   </div>
                 </div>
               </div>

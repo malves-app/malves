@@ -1,10 +1,12 @@
+"use client";
 import ContactSection from "../../components/malves/ContactSection";
 import FooterSection from "../../components/malves/FooterSection";
 import Header from "../../components/malves/Header";
 import HeroSection from "../../components/malves/HeroSection";
 import AboutSection from "../../components/malves/AboutSection";
 import ShowcaseSection from "../../components/malves/ShowcaseSection";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+
 const LandingPage: React.FC = () => {
   useEffect(() => {
     const hash = window.location.hash;

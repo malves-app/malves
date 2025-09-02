@@ -1,7 +1,9 @@
+"use client";
+
 import FooterSection from "../../components/malves/FooterSection";
 import { ArrowLeft, Code, Database, Eye, Lock, Shield } from "lucide-react";
+import Link from "next/link";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const PrivacyPolicyPage: React.FC = () => {
   useEffect(() => {
@@ -26,7 +28,7 @@ const PrivacyPolicyPage: React.FC = () => {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 px-6 py-8 border-b border-white/10 bg-gradient-to-br from-slate-900/95 via-gray-900/95 to-slate-900/95 backdrop-blur-xl">
         <nav className="max-w-4xl mx-auto flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-3 group">
             <div className="p-2 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300">
               <Code size={24} className="text-white" />
             </div>
@@ -36,7 +38,7 @@ const PrivacyPolicyPage: React.FC = () => {
           </Link>
 
           <Link
-            to="/"
+            href="/"
             className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 font-medium"
           >
             <ArrowLeft size={20} />
