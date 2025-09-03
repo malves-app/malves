@@ -84,8 +84,7 @@ const ShowcaseSection = () => {
                     <Image
                       src={googlePlayIcon}
                       alt="Google Play"
-                      width={135}
-                      height={40}
+                      height={80}
                     />
                   </button>
                 </div>

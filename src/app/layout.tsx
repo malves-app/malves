@@ -7,8 +7,8 @@ import '../index.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Malves - Desenvolvimento Web',
-  description: 'Soluções de desenvolvimento web personalizadas e inovadoras',
+  title: 'Malves',
+  description: 'Soluções de desenvolvimento web e mobile personalizadas e inovadoras',
 }
 
 export default function RootLayout({

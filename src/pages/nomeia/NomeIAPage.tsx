@@ -33,16 +33,14 @@ const NomeIAPage: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Garante que a página sempre carregue no topo
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    // Função para detectar mudanças no hash da URL
     const handleHashChange = () => {
-      const hash = window.location.hash.slice(1); // Remove o #
+      const hash = window.location.hash.slice(1);
       if (hash) {
         const element = document.getElementById(hash);
         if (element) {
@@ -56,9 +54,7 @@ const NomeIAPage: React.FC = () => {
       }
     };
 
-    // Verifica se há hash na URL ao carregar a página
     if (window.location.hash) {
-      // Pequeno delay para garantir que o DOM esteja carregado
       setTimeout(handleHashChange, 100);
     }
 
@@ -81,7 +77,6 @@ const NomeIAPage: React.FC = () => {
         behavior: "smooth",
       });
 
-      // Atualiza a URL com o hash da seção
       window.history.pushState(null, "", `#${sectionId}`);
     }
     setIsMobileMenuOpen(false);
@@ -259,12 +254,7 @@ const NomeIAPage: React.FC = () => {
                 );
               }}
             >
-              <Image
-                src={googlePlayIcon}
-                alt="Google Play"
-                width={135}
-                height={40}
-              />
+              <Image src={googlePlayIcon} alt="Google Play" height={80} />
             </button>
 
             <button
@@ -642,12 +632,7 @@ const NomeIAPage: React.FC = () => {
                   );
                 }}
               >
-                <Image
-                  src={googlePlayIcon}
-                  alt="Google Play"
-                  width={135}
-                  height={40}
-                />
+                <Image src={googlePlayIcon} alt="Google Play" height={80} />
               </button>
             </div>
           </div>
@@ -656,7 +641,7 @@ const NomeIAPage: React.FC = () => {
 
       <section
         id="politica-de-privacidade"
-        className="relative z-10 min-h-screen flex items-center justify-center px-6"
+        className="relative z-10 min-h-screen flex items-center justify-center px-6 mb-5"
       >
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-gradient-to-r from-green-600/20 to-teal-600/20 backdrop-blur-xl p-12 rounded-3xl border border-white/20">

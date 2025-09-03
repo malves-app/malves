@@ -6,13 +6,11 @@ const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 120; // Altura correta do header fixo
-      const elementPosition = element.offsetTop - headerHeight - 20; // 20px de margem extra
+      const elementPosition = element.offsetTop - 20;
       window.scrollTo({
         top: elementPosition,
         behavior: "smooth",
       });
-      // Atualiza a URL com o hash
       window.history.pushState(null, "", `#${sectionId}`);
     }
   };
