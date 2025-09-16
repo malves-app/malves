@@ -703,7 +703,7 @@ const NomeIAPage: React.FC = () => {
             </div>
 
             <Link
-              href="/nomeia/politica-de-privacidade"
+              href="/nomeia/politica"
               className="bg-gradient-to-r from-green-600 to-teal-500 px-8 py-4 rounded-2xl hover:from-green-700 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-semibold inline-flex items-center space-x-2"
             >
               <Shield size={20} />
@@ -814,10 +814,16 @@ const NomeIAPage: React.FC = () => {
                   Como Funciona
                 </button>
                 <Link
-                  href="/nomeia/politica-de-privacidade"
+                  href="/nomeia/politica#privacidade"
                   className="block text-gray-400 hover:text-white transition-colors duration-200 hover:translate-x-1 transform"
                 >
                   Privacidade
+                </Link>
+                <Link
+                  href="/nomeia/politica#termos-de-uso"
+                  className="block text-gray-400 hover:text-white transition-colors duration-200 hover:translate-x-1 transform"
+                >
+                  Termos de Uso
                 </Link>
               </div>
             </div>
@@ -861,10 +867,16 @@ const NomeIAPage: React.FC = () => {
 
                 <div className="flex items-center space-x-6 text-sm">
                   <Link
-                    href="/politica-de-privacidade"
+                    href="/nomeia/politica#privacidade"
                     className="text-gray-400 hover:text-white transition-colors duration-200 hover:underline"
                   >
                     Política de Privacidade
+                  </Link>
+                  <Link
+                    href="/nomeia/politica#termos-de-uso"
+                    className="text-gray-400 hover:text-white transition-colors duration-200 hover:underline"
+                  >
+                    Termos de Uso
                   </Link>
                   <a
                     href="mailto:malvesappbr@gmail.com"
